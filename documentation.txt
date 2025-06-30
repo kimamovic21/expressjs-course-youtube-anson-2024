@@ -1,0 +1,19 @@
+Express JS Full Course
+
+
+Intro & Setup
+
+-open terminal and type command npm init -y
+-open web page: https://expressjs.com/
+-type command: npm i express 
+-open link: https://www.npmjs.com/package/nodemon
+-type command: npm i -D nodemon
+-in package.json file add commands start:dev and start
+-add type module
+-create .gitignore file
+-create folder src and index.mjs file
+-in index.mjs file import function express from package express
+-create variableS const app and const PORT
+-invoke function app.listen()
+-type command npm run start:dev
+-open route: http://localhost:3000/ in browser
