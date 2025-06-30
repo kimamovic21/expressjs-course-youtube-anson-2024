@@ -52,3 +52,11 @@ Query params
 -invoke function return res.send(mockUsers)
 -open route: http://localhost:3000/api/users?filter=username
 -open route: http://localhost:3000/api/users?filter=username&value=ja
+
+
+Post Requests
+
+-open Postman and create route for POST method for users
+-in index.mjs file invoke function app.post() for users
+-open route: http://localhost:3000/api/users and send POST request with body
+-invoke function app.use(express.json())
