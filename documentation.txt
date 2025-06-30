@@ -60,3 +60,20 @@ Post Requests
 -in index.mjs file invoke function app.post() for users
 -open route: http://localhost:3000/api/users and send POST request with body
 -invoke function app.use(express.json())
+-destructure variable const { body } from req
+-create variable const newUser
+-invoke function mockUsers.push(newUser)
+-invoke function return res.status(201).send(newUser)
+
+
+Put Requests
+
+-in index.mjs invoke function app.put() for user by id
+-destructure variables const { body, params: { id } } from req
+-create variable const parsedId
+-add condition if (isNaN(parsedId))
+-create variable const findUserIndex
+-add condition if (findUserIndex === -1)
+-update user mockUsers[findUserIndex]
+-invoke function return res.sendStatus(200)
+-open route: http://localhost:3000/api/users/:id and send PUT request with body

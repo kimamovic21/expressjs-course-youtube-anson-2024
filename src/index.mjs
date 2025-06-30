@@ -39,6 +39,7 @@ app.get('/api/users', (req, res) => {
 
 app.get('/api/users/:id', (req, res) => {
   console.log(req.params);
+
   const parsedId = parseInt(req.params.id);
   console.log(parsedId);
 
@@ -63,9 +64,34 @@ app.post('/api/users', (req, res) => {
     id: mockUsers[mockUsers.length - 1].id + 1,
     ...body
   };
+
   mockUsers.push(newUser);
 
   return res.status(201).send(newUser);
+});
+
+app.put('/api/users/:id', (req, res) => {
+  console.log(req.params);
+
+  const { body, params: { id } } = req;
+
+  const parsedId = parseInt(id);
+  if (isNaN(parsedId)) {
+    return res.sendStatus(400);
+  };
+
+  const findUserIndex = mockUsers.findIndex((user) => user.id === parsedId);
+
+  if (findUserIndex === -1) {
+    return res.status(404).send({ msg: 'User not found.' })
+  };
+
+  mockUsers[findUserIndex] = {
+    id: parsedId,
+    ...body
+  };
+
+  return res.sendStatus(200);
 });
 
 app.get('/api/products', (req, res) => {
