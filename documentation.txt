@@ -17,3 +17,13 @@ Intro & Setup
 -invoke function app.listen()
 -type command npm run start:dev
 -open route: http://localhost:3000/ in browser
+
+
+Get Requests
+
+-in index.mjs file invoke function app.get()
+-open route: http://localhost:3000/ in browser
+-invoke function app.get() for users
+-open route: http://localhost:3000/api/users in browser
+-invoke function app.get() for products
+-open route: http://localhost:3000/api/products in browser
