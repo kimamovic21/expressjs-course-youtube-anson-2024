@@ -13,7 +13,7 @@ Intro & Setup
 -create .gitignore file
 -create folder src and index.mjs file
 -in index.mjs file import function express from package express
--create variableS const app and const PORT
+-create variables const app and const PORT
 -invoke function app.listen()
 -type command npm run start:dev
 -open route: http://localhost:3000/ in browser
@@ -27,3 +27,17 @@ Get Requests
 -open route: http://localhost:3000/api/users in browser
 -invoke function app.get() for products
 -open route: http://localhost:3000/api/products in browser
+
+
+Route params
+
+-in index.mjs file invoke function app.get() for :id
+-create variables const mockUsers and mockProducts
+-open route: http://localhost:3000/api/users/:id
+-open route: http://localhost:3000/api/users/string
+-create variable const parsedId
+-add condition if (isNaN(parsedId))
+-create variable const findUser
+-add condition if (!findUser)
+-invoke function return res.send(findUser)
+-open route: http://localhost:3000/api/users/:id
