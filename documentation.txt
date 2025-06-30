@@ -41,3 +41,14 @@ Route params
 -add condition if (!findUser)
 -invoke function return res.send(findUser)
 -open route: http://localhost:3000/api/users/:id
+
+
+Query params
+
+-open route: http://localhost:3000/api/users
+-in index.mjs file, in get method for users destructure variable query from req
+-add condition if (!filter && !value)
+-add condition if (filter && value)
+-invoke function return res.send(mockUsers)
+-open route: http://localhost:3000/api/users?filter=username
+-open route: http://localhost:3000/api/users?filter=username&value=ja
