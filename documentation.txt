@@ -128,3 +128,37 @@ Validation
 -in validationSchema.mjs file create and export variable const createUserValidationSchema 
 -in index.mjs file import variable createUserValidationSchema from utils/validationSchema.mjs file
 -in function app.post() for users add function checkSchema as parameter
+
+
+Routers
+
+-create folder routes and user.mjs file
+-in users.mjs file import function Router from package express
+-import functions query, validationResult, checkSchema and matchedData from package express-validator
+-create variable const router 
+-invoke function router.get()
+-export variable router as default
+-in index.mjs file import variable router as usersRouter from routes/user.mjs file
+-invoke function app.use(usersRouter)
+-create constants.mjs file
+-move arrays mockUsers and mockProducts to constants.mjs file
+-in index.mjs file import arrays from constants.mjs file
+-in users.mjs file import arrays from constants.mjs file
+-open route: http://localhost:3000/api/users/ and send GET request
+-in users.mjs file invoke function router.post()
+-open route: http://localhost:3000/api/users/ and send POST request with body
+-create middlewares.js file
+-in middlewares.js file move function resolveIndexByUserId() from index.mjs file
+-in index.mjs file and users.mjs file import function resolveIndexByUserId from middlewares.js file
+-in users.mjs file invoke function router.get() for users by id
+-open route: http://localhost:3000/api/users/id and send GET request
+-in users.mjs file invoke functions router.put(), router.patch() and router.delete()
+-in folder routes create products.js file
+-in products.js file create and export variable const router as default
+-in folder routes create index.mjs file
+-in routes/index.mjs file import function Router from package express
+-import variables usersRouter and productsRouter
+-create and export variable router as default
+-invoke two functions router.use()
+-in index.mjs file import variable routes from routes/index.mjs file
+-invoke function app.use(routes)
