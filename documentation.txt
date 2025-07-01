@@ -108,3 +108,23 @@ Middleware
 -open route: http://localhost:3000/api/users/:id and send DELETE request
 -add to function app.get() for user id parameter function resolveIndexByUserId
 -open route: http://localhost:3000/api/users/:id and send GET request
+
+
+Validation
+
+-open link: https://express-validator.github.io/docs
+-open link: https://www.npmjs.com/package/express-validator
+-type command: npm i express-validator
+-in index.mjs file import functions from package express-validator
+-in route app.get() for users, add function query as parameter
+-create variable const result
+-open route: http://localhost:3000/api/users/ and send GET request with query
+-in function app.post() for creating user add function body as parameter
+-create variable const result
+-add condition if (!result.isEmpty())
+-create variable const data
+-open route: http://localhost:3000/api/users/ and send POST request with and without body
+-create folder utils and validationSchema.mjs file
+-in validationSchema.mjs file create and export variable const createUserValidationSchema 
+-in index.mjs file import variable createUserValidationSchema from utils/validationSchema.mjs file
+-in function app.post() for users add function checkSchema as parameter
