@@ -118,6 +118,27 @@ app.patch('/api/users/:id', (req, res) => {
   return res.sendStatus(200);
 });
 
+app.delete('/api/users/:id', (req, res) => {
+  console.log(req.params);
+
+  const { params: { id } } = req;
+
+  const parsedId = parseInt(id);
+  if (isNaN(parsedId)) {
+    return res.sendStatus(400);
+  };
+
+  const findUserIndex = mockUsers.findIndex((user) => user.id === parsedId);
+
+  if (findUserIndex === -1) {
+    return res.status(404).send({ msg: 'User not found.' })
+  };
+
+  mockUsers.splice(findUserIndex, 1);
+
+  return res.sendStatus(200);
+});
+
 app.get('/api/products', (req, res) => {
   res.send(mockProducts);
 });
