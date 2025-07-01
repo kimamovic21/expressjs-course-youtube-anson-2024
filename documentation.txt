@@ -77,3 +77,9 @@ Put Requests
 -update user mockUsers[findUserIndex]
 -invoke function return res.sendStatus(200)
 -open route: http://localhost:3000/api/users/:id and send PUT request with body
+
+
+Patch Requests
+
+-in index.mjs file invoke function app.patch()
+-open route: http://localhost:3000/api/users/:id and send PATCH request with body
