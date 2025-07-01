@@ -89,3 +89,22 @@ Delete Requests
 
 -in index.mjs file invoke function app.delete()
 -open route: http://localhost:3000/api/users/:id and send DELETE request
+
+
+Middleware
+
+-in index.mjs file create function loggingMiddleware()
+-invoke function app.use(loggingMiddleware)
+-open route: http://localhost:3000
+-add to function app.get('/') parameter loggingMiddleware
+-invoke function app.use() before function app.get() for all users
+-open route: http://localhost:3000/api/users
+-create function resolveIndexByUserId() with three parameters
+-add to function app.put() parameter function resolveIndexByUserId
+-open route: http://localhost:3000/api/users/:id and send PUT request with body
+-add to function app.patch() parameter function resolveIndexByUserId
+-open route: http://localhost:3000/api/users/:id and send PATCH request with body
+-add to function app.delete() parameter function resolveIndexByUserId
+-open route: http://localhost:3000/api/users/:id and send DELETE request
+-add to function app.get() for user id parameter function resolveIndexByUserId
+-open route: http://localhost:3000/api/users/:id and send GET request
