@@ -162,3 +162,15 @@ Routers
 -invoke two functions router.use()
 -in index.mjs file import variable routes from routes/index.mjs file
 -invoke function app.use(routes)
+
+
+Cookies
+
+-in index.mjs file, in function app.get() for home route invoke function res.cookie()
+-open route: http://localhost:3000/ and send GET request
+-open link: https://www.npmjs.com/package/cookie-parser
+-type command: npm i cookie-parser
+-in index.mjs file import function cookieParser from package cookie-parser
+-invoke function app.use(cookieParser())
+-in products.mjs file, in route router.get() add condition if
+-open route: http://localhost:3000/api/products and send GET request
