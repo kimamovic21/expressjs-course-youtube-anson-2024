@@ -1,9 +1,34 @@
 export const mockUsers = [
-  { id: 1, username: 'james', displayName: 'James' },
-  { id: 2, username: 'john ', displayName: 'John' },
-  { id: 3, username: 'robert', displayName: 'Robert' },
-  { id: 4, username: 'anson', displayName: 'Anson' },
-  { id: 5, username: 'kerim', displayName: 'Kerim' },
+  {
+    id: 1,
+    username: 'james',
+    displayName: 'James',
+    password: 'hello123'
+  },
+  {
+    id: 2,
+    username: 'john ',
+    displayName: 'John',
+    password: 'hello123'
+  },
+  {
+    id: 3,
+    username: 'robert',
+    displayName: 'Robert',
+    password: 'hello123'
+  },
+  {
+    id: 4,
+    username: 'anson',
+    displayName: 'Anson',
+    password: 'hello123'
+  },
+  {
+    id: 5,
+    username: 'kerim',
+    displayName: 'Kerim',
+    password: 'hello123'
+  },
 ];
 
 export const mockProducts = [

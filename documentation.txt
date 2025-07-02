@@ -187,3 +187,15 @@ Sessions
 -in users.mjs file, in function router.get() for all users invoke function req.sessionStore.get()
 -open route: http://localhost:3000 and send GET request
 -open route: http://localhost:3000/api/users and send GET request
+
+
+Sessions part 2
+
+-in index.mjs file invoke function app.post() for route api/auth
+-open route: http://localhost:3000/api/auth and send POST request with body
+-invoke function app.get() for route api/auth/status
+-open route: http://localhost:3000/api/auth/status and send GET request
+-invoke function app.post() for route api/cart
+-open route: http://localhost:3000/api/cart and send POST request with body
+-invoke function app.get() for route api/cart
+-open route: http://localhost:3000/api/cart and send GET request
