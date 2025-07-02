@@ -199,3 +199,25 @@ Sessions part 2
 -open route: http://localhost:3000/api/cart and send POST request with body
 -invoke function app.get() for route api/cart
 -open route: http://localhost:3000/api/cart and send GET request
+
+
+Passport.js & Authentication
+
+-open web page: https://www.passportjs.org/
+-open link: https://www.npmjs.com/package/passport
+-type command: npm i passport
+-open link: https://www.npmjs.com/package/passport-local
+-type command: npm i passport-local
+-in index.mjs file invoke functions app.use(passport.initialize()) and app.use(passport.session())
+-in folder src create folder strategies and local-strategy.mjs file
+-in local-strategy.mjs file import object passport, function Strategy and array mockUsers
+-invoke and export function passport.use() as default
+-in index.mjs file add import for local-strategy.mjs file
+-open route: http://localhost:3000/api/auth and send POST request with body
+-in local-strategy.mjs file invoke function passport.serializeUser()
+-invoke function passport.deserializeUser()
+-open route: http://localhost:3000/api/auth and send POST request with body
+-invoke function app.get() for route api/auth/status
+-open route: http://localhost:3000/api/auth/status and send GET request
+-invoke function app.post() for route api/auth/logout
+-open route: http://localhost:3000/api/auth/logout and send POST request with body
