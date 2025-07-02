@@ -174,3 +174,16 @@ Cookies
 -invoke function app.use(cookieParser())
 -in products.mjs file, in route router.get() add condition if
 -open route: http://localhost:3000/api/products and send GET request
+
+
+Sessions
+
+-open link: https://www.npmjs.com/package/express-session
+-type command: npm i express-session
+-in index.mjs file import function session from package express-session
+-invoke function app.use(session())
+-open route: http://localhost:3000 and send GET request
+-open route: http://localhost:3000/api/users and send GET request
+-in users.mjs file, in function router.get() for all users invoke function req.sessionStore.get()
+-open route: http://localhost:3000 and send GET request
+-open route: http://localhost:3000/api/users and send GET request
