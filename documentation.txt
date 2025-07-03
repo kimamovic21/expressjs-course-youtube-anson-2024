@@ -221,3 +221,28 @@ Passport.js & Authentication
 -open route: http://localhost:3000/api/auth/status and send GET request
 -invoke function app.post() for route api/auth/logout
 -open route: http://localhost:3000/api/auth/logout and send POST request with body
+
+
+Database & MongoDB
+
+-open link: https://www.npmjs.com/package/mongoose
+-type command: npm i mongoose
+-in index.mjs file import object mongoose from package mongoose
+-invoke function mongoose.connect()
+-in folder src create folders mongoose, schemas and user.mjs file
+-in schemas/user.mjs file create import object mongoose from package mongoose
+-create variable const UserSchema
+-create and export variable const User
+-in users.mjs file import model User from user.mjs file
+-in function router.post() destructure variable const { body } from req
+-create variable const newUser
+-add to function (req, res) keyword async
+-add blocks try - catch
+-in block try create variable const savedUser
+-open route: http://localhost:3000/api/users and send POST request with body
+-open MongoDB to see created user
+-create variable const result
+-add condition if (!result.isEmpty())
+-create variable const data
+-in local-strategy.mjs file import variable User from user.mjs file
+-in functions deserializeUser() and passport.use() add logic for User model

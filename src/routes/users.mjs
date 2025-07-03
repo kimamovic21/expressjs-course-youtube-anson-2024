@@ -1,38 +1,38 @@
-import { Router } from 'express';
+import { response, Router } from 'express';
 import {
   query,
   validationResult,
   checkSchema,
-  matchedData
+  matchedData,
 } from 'express-validator';
 import { mockUsers } from '../utils/constants.mjs';
-import { createUserValidationSchema } from '../utils/validationSchemas.mjs'
+import { createUserValidationSchema } from '../utils/validationSchemas.mjs';
 import { resolveIndexByUserId } from '../utils/middlewares.mjs';
+import { User } from '../mongoose/schemas/user.mjs';
 
 const router = Router();
 
 router.post(
   '/api/users',
   checkSchema(createUserValidationSchema),
-  (req, res) => {
+  async (req, res) => {
     const result = validationResult(req);
-    console.log(result);
 
     if (!result.isEmpty()) {
-      return res.status(400).send({ errors: result.array() });
+      return response.status(400).send(result.array())
     };
 
     const data = matchedData(req);
     console.log(data);
 
-    const newUser = {
-      id: mockUsers[mockUsers.length - 1].id + 1,
-      ...data
+    const newUser = new User(data);
+    try {
+      const savedUser = await newUser.save();
+      return res.status(201).send(savedUser);
+    } catch (err) {
+      console.error(err);
+      return res.sendStatus(400);
     };
-
-    mockUsers.push(newUser);
-
-    return res.status(201).send(newUser);
   }
 );
 
