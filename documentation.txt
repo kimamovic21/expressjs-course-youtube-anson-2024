@@ -262,3 +262,13 @@ Hashing Passwords
 -open route: http://localhost:3000/api/users and send POST request with body
 -open route: http://localhost:3000/api/auth and send POST request with body
 -in function passport.use() add condition if (!comparePassword(password, findUser.password))
+
+
+Session Store 
+
+-open link: https://www.npmjs.com/package/connect-mongo
+-type command: npm i connect-mongo
+-in index.mjs file import function MongoStore from package connect-mongo
+-in function session() add value store
+-open route: http://localhost:3000/api/auth and send POST request with body
+-open route: http://localhost:3000/api/auth/status and send GET request

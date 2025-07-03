@@ -3,6 +3,7 @@ import cookieParser from 'cookie-parser';
 import session from 'express-session';
 import passport from 'passport';
 import mongoose from 'mongoose';
+import MongoStore from 'connect-mongo';
 import routes from './routes/index.mjs';
 import './strategies/local-strategy.mjs';
 
@@ -19,10 +20,13 @@ app.use(cookieParser('helloworld'));
 app.use(session({
   secret: 'anson the dev',
   saveUninitialized: false,
-  resave: false,
+  resave: true,
   cookie: {
     maxAge: 1000 * 60 * 60 * 24 * 7
   },
+  store: MongoStore.create({
+    client: mongoose.connection.getClient(),
+  })
 }));
 app.use(passport.initialize());
 app.use(passport.session());
@@ -56,6 +60,7 @@ app.get('/api/auth/status', (req, res) => {
   console.log(`Inside auth/status endpoint`);
   console.log(req.user);
   console.log(req.session);
+  console.log(req.sessionID);
 
   return req.user ? res.send(req.user) : res.sendStatus(401);
 });
