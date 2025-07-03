@@ -246,3 +246,19 @@ Database & MongoDB
 -create variable const data
 -in local-strategy.mjs file import variable User from user.mjs file
 -in functions deserializeUser() and passport.use() add logic for User model
+
+
+Hashing Passwords
+
+-open link: https://www.npmjs.com/package/bcrypt
+-type command: npm i bcrypt
+-in folder utils create helpers.mjs file
+-in helpers.mjs file import object bcrypt from package bcrypt
+-create variable const saltRounds
+-create and export function hashPassword()
+-in users.mjs file import function hashPassword() from helpers.mjs file
+-in helpers.mjs file create and export function comparePassword()
+-in local-strategy.mjs file import function comparePassword from helpers.mjs file
+-open route: http://localhost:3000/api/users and send POST request with body
+-open route: http://localhost:3000/api/auth and send POST request with body
+-in function passport.use() add condition if (!comparePassword(password, findUser.password))
