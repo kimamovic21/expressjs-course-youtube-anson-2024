@@ -272,3 +272,40 @@ Session Store
 -in function session() add value store
 -open route: http://localhost:3000/api/auth and send POST request with body
 -open route: http://localhost:3000/api/auth/status and send GET request
+
+
+OAuth2 
+
+-open link: https://www.npmjs.com/package/dotenv
+-type command: npm i dotenv
+-in index.mjs file import package dotenv
+-open link: https://discord.com/developers/applications
+-create new application
+-open link: https://www.npmjs.com/package/passport-discord
+-type command: npm i passport-discord
+-create .env file and add three env variables
+-create discord-strategy.mjs file
+-in discord-strategy.mjs file import function Strategy from package passport-discord
+-import object passport from package passport
+-invoke and export function passport.use() as default
+-in index.mjs file import discord-strategy.mjs file
+-invoke function app.get() for route api/auth/discord
+-open route: http://localhost:3000/api/auth/discord and send GET request
+-invoke function app.get() for route api/auth/discord/redirect
+-open route: http://localhost:3000/api/auth/discord/redirect and send GET request
+-in folder schemas.mjs create discord-user.mjs file
+-in discord-user.mjs file create variable const DiscordUserSchema
+-create and export variable export const DiscordUser
+-in discord-strategy.mjs file import variable DiscordUser from discord-user.mjs file
+-add to function Strategy two arguments
+-first argument is object with env variables
+-second object is anonymous async function with four parameters
+-in async function create variable const findUser
+-add condition if (!findUser)
+-in condition if (!findUser) create variable const newUser
+-after condition if (!findUser) create variable const newSavedUser
+-invoke function done()
+-in anonymous function create variable let findUser
+-add two blocks try - catch
+-in discord-strategy.mjs file invoke functions passport.serializeUser() and passport.deserializeUser()
+-open route: http://localhost:3000/api/auth/status and send GET request

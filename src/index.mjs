@@ -1,3 +1,5 @@
+import 'dotenv/config'
+import './strategies/discord-strategy.mjs';
 import express from 'express';
 import cookieParser from 'cookie-parser';
 import session from 'express-session';
@@ -5,7 +7,6 @@ import passport from 'passport';
 import mongoose from 'mongoose';
 import MongoStore from 'connect-mongo';
 import routes from './routes/index.mjs';
-import './strategies/local-strategy.mjs';
 
 const app = express();
 
@@ -39,6 +40,10 @@ app.listen(PORT, () => {
   console.log(`Running on port: ${PORT}`);
 });
 
+app.get('/', (req, res) => {
+  res.send('Home route');
+});
+
 app.post(
   '/api/auth',
   passport.authenticate('local'),
@@ -64,3 +69,16 @@ app.get('/api/auth/status', (req, res) => {
 
   return req.user ? res.send(req.user) : res.sendStatus(401);
 });
+
+app.get('/api/auth/discord', passport.authenticate('discord'));
+
+app.get(
+  '/api/auth/discord/redirect',
+  passport.authenticate('discord'),
+  (req, res) => {
+    console.log(req.session);
+    console.log(req.user);
+
+    res.sendStatus(200);
+  }
+);

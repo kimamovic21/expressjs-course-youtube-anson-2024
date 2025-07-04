@@ -4,9 +4,6 @@ import { comparePassword } from '../utils/helpers.mjs';
 import passport from 'passport';
 
 passport.serializeUser((user, done) => {
-  console.log(`Inside Serialize user`);
-  console.log(user);
-
   done(null, user.id);
 });
 
