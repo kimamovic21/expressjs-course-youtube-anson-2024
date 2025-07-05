@@ -1,43 +1,23 @@
-import { response, Router } from 'express';
+import { Router } from 'express';
 import {
   query,
   validationResult,
   checkSchema,
-  matchedData,
 } from 'express-validator';
 import { mockUsers } from '../utils/constants.mjs';
 import { createUserValidationSchema } from '../utils/validationSchemas.mjs';
 import { resolveIndexByUserId } from '../utils/middlewares.mjs';
-import { User } from '../mongoose/schemas/user.mjs';
-import { hashPassword } from '../utils/helpers.mjs';
+import {
+  createUserHandler,
+  getUserByIdHandler
+} from '../handlers/users.mjs';
 
 const router = Router();
 
 router.post(
   '/api/users',
   checkSchema(createUserValidationSchema),
-  async (req, res) => {
-    const result = validationResult(req);
-
-    if (!result.isEmpty()) {
-      return response.status(400).send(result.array())
-    };
-
-    const data = matchedData(req);
-    console.log(data);
-
-    data.password = hashPassword(data.password);
-    console.log(data);
-
-    const newUser = new User(data);
-    try {
-      const savedUser = await newUser.save();
-      return res.status(201).send(savedUser);
-    } catch (err) {
-      console.error(err);
-      return res.sendStatus(400);
-    };
-  }
+  createUserHandler
 );
 
 router.get(
@@ -73,17 +53,7 @@ router.get(
   }
 );
 
-router.get('/api/users/:id', resolveIndexByUserId, (req, res) => {
-  const { findUserIndex } = req;
-
-  const findUser = mockUsers[findUserIndex];
-
-  if (!findUser) {
-    return res.status(400).sendStatus(404);
-  };
-
-  return res.send(findUser);
-});
+router.get('/api/users/:id', resolveIndexByUserId, getUserByIdHandler);
 
 router.put('/api/users/:id', resolveIndexByUserId, (req, res) => {
   const { body, findUserIndex } = req;

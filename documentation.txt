@@ -309,3 +309,97 @@ OAuth2
 -add two blocks try - catch
 -in discord-strategy.mjs file invoke functions passport.serializeUser() and passport.deserializeUser()
 -open route: http://localhost:3000/api/auth/status and send GET request
+
+
+Unit Testing & Jest
+
+-open link: https://www.npmjs.com/package/@babel/core
+-open link: https://www.npmjs.com/package/@babel/node
+-open link: https://www.npmjs.com/package/@babel/preset-env
+-open web page: https://jestjs.io
+-open link: https://www.npmjs.com/package/babel-jest
+-type command: npm i -D @babel/core @babel/node @babel/preset-env jest
+-create .babelrc file
+-in .babelrc file add object presets
+-type command: npm init jest@latest to create jest.config.js file
+-in jest.config.mjs file add object transform
+-add array moduleFileExtensions
+-in package.json file add command test for package jest
+-in folder src create folder __tests__ and users.spec.js file
+-create jsconfig.json file
+-in jsconfig.json file create object typeAcquisitions
+-open link: https://www.npmjs.com/package/@types/jest
+-type command: npm i @types/jest
+-in users.spec.js file invoke function describe() with two arguments
+-first argument is test description and second argument is anonymous function
+-test description is get users
+-in anonymous function invoke function it() with two arguments
+-in function it() first argument is test description and second argument is anonymous function
+-test description - should get user by id
+-create folder handlers 
+-in folder handlers create users.mjs file
+-in handlers/users.mjs file create and export function getUserById
+-in routes/users.mjs file import function getUserById from handlers/users.mjs file
+-in function router.get() for route api/users/:id add function getUserByIdHandler
+-in users.spec.js file import function getUserByIdHandler from handlers/users.mjs file
+-create variables const mockRequest and mockResponse
+-in anonymous function invoke function getUserByIdHandler() with two arguments
+-type command: npm run test
+-invoke function expect(mockResponse.send).toHaveBeenCalledWith()
+-import array mockUsers from constants.mjs file
+-invoke function expect(mockResponse.send).toHaveBeenCalledWith(mockUsers[0])
+-invoke function expect(mockResponse.send).toHaveBeenCalledWith({ ... })
+-invoke function expect(mockResponse.send).toHaveBeenCalledTimes(1)
+-invoke function it () with two arguments
+-in function it() first argument is test description and second argument is anonymous function
+-test description should call sendStatus with 404 when user not found
+-in anonymous function create variable const copyMockRequest
+-invoke function getUserByIdHandler()
+-invoke function expect(mockResponse.sendStatus).toHaveBeenCalled()
+-invoke function expect(mockResponse.sendStatus).toHaveBeenCalledWith(404)
+-invoke function expect(mockResponse.sendStatus).toHaveBeenCalledTimes(1)
+-in handlers/users.mjs file create and export async function  createUserHandler()
+-in router/users.mjs file import function createUserHandler from handlers/users.mjs file
+-add to function router.post() function createUserHandler
+-invoke function describe() with two arguments
+-first argument is test description and second argument is anonymous function
+-test description - create user
+-in anonymous function invoke function it() with two arguments
+-first argument is test description and second argument is anonymous function
+-test description - should return status of 400 when there are errors
+-invoke three functions jest.mock()
+-in users.spec.js file import function createUserHandler from handlers/users.mjs file
+-create variable empty object const mockRequest = {}
+-in function it() invoke function await createUserHandler(mockRequest, mockResponse) 
+-import * as validator from 'express-validator'
+-invoke function expect(validator.validationResult).toHaveBeenCalled()
+-invoke fun expect(validator.validationResult).toHaveBeenCalledWith(mockRequest)
+-invoke function expect(mockResponse.status).toHaveBeenCalledWith(400)
+-invoke function expect(mockResponse.send).toHaveBeenCalledWith([{ ... }])
+-invoke function it with two arguments
+-first argument is test description and second argument is anonymous function
+-test description - should return status of 201 and the user created
+-in anonymous function invoke function jest.spyOn()
+-invoke function await createUserHandler()
+-invoke function expect(validator.matchedData).toHaveBeenCalled()
+-add import * as helpers from "../utils/helpers.mjs";
+-invoke function expect(validator.matchedData).toHaveBeenCalledWith(mockRequest)
+-invoke function expect(helpers.hashPassword).toHaveBeenCalledWith('password')
+-invoke function expect(helpers.hashPassword).toHaveReturnedWith('hashed_password')
+-import variable User from schemas/user.mjs file
+-invoke function expect(User).toHaveBeenCalled()
+-invoke function expect(User).toHaveBeenCalledWith({ ... })
+-invoke function expect(User.mock.instances[0].save).toHaveBeenCalled()
+-create variable const saveMethod 
+-invoke function expect(saveMethod).toHaveBeenCalled()
+-invoke function expect(mockResponse.status).toHaveBeenCalledWith(201)
+-invoke function expect(mockResponse.send).toHaveBeenCalledWith({ ... })
+-invoke function it() with two arguments
+-first argument is test description and second argument is anonymous function
+-test description send status of 400 when database fails to save user
+-in anonymous function invoke function jest.spyOn()
+-create variable const saveMethod
+-invoke function await createUserHandler()
+-invoke function await createUserHandler()
+-invoke function expect(saveMethod).toHaveBeenCalled()
+-invoke function expect(mockResponse.sendStatus).toHaveBeenCalledWith(400)
